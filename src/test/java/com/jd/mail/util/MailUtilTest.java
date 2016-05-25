@@ -26,7 +26,7 @@ public class MailUtilTest {
         message.setTo("529352479@qq.com");
         message.setSubject("测试邮件工具类618");
         Map model = new HashMap();
-        model.put("user", "京东618");
+        model.put("user", "测试用户");
         model.put("text","这里是通过模版吐出的内容 !");
         message.setModel(model);
         message.setTemplatePath("template/demo.vm");
@@ -39,7 +39,7 @@ public class MailUtilTest {
         message.setTo("529352479@qq.com");
         message.setSubject("测试邮件工具类2");
         Map model = new HashMap();
-        model.put("user", "京东");
+        model.put("user", "测试用户");
         model.put("text","这里是通过模版吐出的内容 !");
         message.setModel(model);
         message.setTemplatePath("template/demo.vm");
