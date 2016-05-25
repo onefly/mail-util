@@ -26,7 +26,7 @@ public class MailUtil {
     //初始化工厂类
     static {
         try {
-            mailFactory = new MailFactory();
+            mailFactory = new MailFactory(null);
         } catch (IOException e) {
             e.printStackTrace();
         }

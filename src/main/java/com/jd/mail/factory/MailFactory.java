@@ -21,8 +21,11 @@ public class MailFactory {
     //发件人邮箱
     private String from;
 
-    public MailFactory() throws IOException {
-        PROP = ConfigUtil.getPropertiesFile("mail.properties");
+    public MailFactory(String propertiesPath) throws IOException {
+        if(propertiesPath == null || propertiesPath.length() ==0){
+            propertiesPath =  "important.properties";
+        }
+        PROP = ConfigUtil.getPropertiesFile(propertiesPath);
         JavaMailSenderImpl mailSender = new JavaMailSenderImpl();
         mailSender.setHost(PROP.getProperty("mail.host"));
         mailSender.setPort(Integer.valueOf(PROP.getProperty("mail.port")));
