@@ -55,24 +55,7 @@ public class MailUtil {
      * @throws TemplateMessagException
      */
     public static void send(TemplateMailMessage mailMessage) throws TemplateMessagException {
-        JavaMailSender mailSender = mailFactory.getMailSender();
-        MimeMessage message = mailSender.createMimeMessage();
-        MimeMessageHelper helper = new MimeMessageHelper(message, defaultEncoding);
-        try {
-            helper.setFrom(mailFactory.getFrom());
-            helper.setTo(mailMessage.getTo());
-            helper.setSubject(mailMessage.getSubject());
-            String text = null;
-            try {
-                text = VelocityEngineUtils.mergeTemplateIntoString(mailFactory.getVelocityEngine(), mailMessage.getTemplatePath(), defaultEncoding, mailMessage.getModel());
-            } catch (IOException e) {
-                throw new TemplateMessagException(e.getMessage()+" getVelocityEngine error! ", e);
-            }
-            helper.setText(text, true);
-            mailSender.send(message);
-        } catch (MessagingException e) {
-            throw new TemplateMessagException(e.getMessage()+" mail send error", e);
-        }
+        send(mailMessage, defaultEncoding);
     }
 
     /**
@@ -93,12 +76,12 @@ public class MailUtil {
             try {
                 text = VelocityEngineUtils.mergeTemplateIntoString(mailFactory.getVelocityEngine(), mailMessage.getTemplatePath(), encoding, mailMessage.getModel());
             } catch (IOException e) {
-                throw new TemplateMessagException(e.getMessage()+" getVelocityEngine error! ", e);
+                throw new TemplateMessagException(e.getMessage() + " getVelocityEngine error! ", e);
             }
             helper.setText(text, true);
             mailSender.send(message);
         } catch (MessagingException e) {
-            throw new TemplateMessagException(e.getMessage()+" mail send error", e);
+            throw new TemplateMessagException(e.getMessage() + " mail send error", e);
         }
     }
 }
